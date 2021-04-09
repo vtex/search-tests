@@ -1,0 +1,24 @@
+***REMOVED***
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": ***REMOVED***
+    "source.fixAll.eslint": true
+***REMOVED***
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.alwaysShowStatus": true,
+  "eslint.packageManager": "yarn",
+  "eslint.workingDirectories": [
+    ***REMOVED***
+      "directory": "react",
+      "changeProcessCWD": true
+  ***REMOVED***
+    ***REMOVED***
+      "directory": "node",
+      "changeProcessCWD": true
+  ***REMOVED***
+  ]
+***REMOVED***
