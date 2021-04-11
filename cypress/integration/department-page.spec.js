@@ -8,9 +8,10 @@ context('Department page', () => {
     cy.visit('/apparel---accessories')
   })
 
-  it('should show 10 products', () => {
-    cy.get(CONSTANTS.searchResultItem).should('exist')
-    cy.get(CONSTANTS.searchResultItem).should('have.length', 10)
+  it('should render the search-result', () => {
+    cy.get(CONSTANTS.searchResultContainer).should('exist')
+    cy.get(CONSTANTS.searchResultLoading).should('not.exist')
+    cy.get(CONSTANTS.searchResultGallery).should('exist')
   })
 
   it('should display the department on the breadcrumb', () => {
@@ -20,9 +21,15 @@ context('Department page', () => {
       .should('have.text', 'Apparel & Accessories')
   })
 
-  it('should have four category filters', () => {
+  it('should show 10 products', () => {
+    cy.get(CONSTANTS.searchResultItem).should('exist')
+    cy.get(CONSTANTS.searchResultItem).should('have.length', 10)
+  })
+
+  it('should have four visible category filters', () => {
     cy.get(CONSTANTS.categoryFilter).should('exist')
     cy.get(CONSTANTS.categoryFilterItems).should('have.length', 4)
+    cy.get(CONSTANTS.categoryFilterItems).should('be.visible')
   })
 
   it('should filter by category', () => {

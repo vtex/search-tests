@@ -6,7 +6,6 @@
   "description": "",
   "builders": {
     "cypress": "0.x",
-    "messages": "1.x",
     "docs": "0.x"
   },
   "dependencies": {
