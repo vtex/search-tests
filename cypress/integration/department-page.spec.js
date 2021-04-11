@@ -8,9 +8,10 @@ context('Department page', () => ***REMOVED***
     cy.visit('/apparel---accessories')
 ***REMOVED***)
 
-  it('should show 10 products', () => ***REMOVED***
-    cy.get(CONSTANTS.searchResultItem).should('exist')
-    cy.get(CONSTANTS.searchResultItem).should('have.length', 10)
+  it('should render the search-result', () => ***REMOVED***
+    cy.get(CONSTANTS.searchResultContainer).should('exist')
+    cy.get(CONSTANTS.searchResultLoading).should('not.exist')
+    cy.get(CONSTANTS.searchResultGallery).should('exist')
 ***REMOVED***)
 
   it('should display the department on the breadcrumb', () => ***REMOVED***
@@ -20,9 +21,15 @@ context('Department page', () => ***REMOVED***
       .should('have.text', 'Apparel & Accessories')
 ***REMOVED***)
 
-  it('should have four category filters', () => ***REMOVED***
+  it('should show 10 products', () => ***REMOVED***
+    cy.get(CONSTANTS.searchResultItem).should('exist')
+    cy.get(CONSTANTS.searchResultItem).should('have.length', 10)
+***REMOVED***)
+
+  it('should have four visible category filters', () => ***REMOVED***
     cy.get(CONSTANTS.categoryFilter).should('exist')
     cy.get(CONSTANTS.categoryFilterItems).should('have.length', 4)
+    cy.get(CONSTANTS.categoryFilterItems).should('be.visible')
 ***REMOVED***)
 
   it('should filter by category', () => ***REMOVED***
