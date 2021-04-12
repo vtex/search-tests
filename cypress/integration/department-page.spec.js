@@ -41,15 +41,31 @@ context('Department page', () => {
     cy.get(CONSTANTS.searchTitle).should('have.text', 'Roupa')
   })
 
-  it('should have three visible brand filters', () => {
+  it('should change the price range', () => {
+    cy.get(CONSTANTS.priceFilter).should('exist')
+    cy.get(CONSTANTS.minPrice).should('have.text', 'R$ 66,00')
+    cy.get(CONSTANTS.maxPrice).should('have.text', '–R$ 121,00')
+    cy.setVtexIdCookie()
+    cy.visit(
+      '/apparel---accessories/roupa/?map=category-1,category-2&priceRange=66 TO 110'
+    )
+    cy.get(CONSTANTS.priceFilter).should('exist')
+    cy.get(CONSTANTS.minPrice).should('have.text', 'R$ 66,00')
+    cy.get(CONSTANTS.maxPrice).should('have.text', '–R$ 110,00')
+    cy.get(CONSTANTS.searchResultItem).should('have.length', 2)
+  })
+
+  it('should have two visible brand filters', () => {
     cy.get(CONSTANTS.brandFilter).should('exist')
-    cy.get(CONSTANTS.brandFilterItems).should('have.length', 3)
+    cy.get(CONSTANTS.brandFilterItems).should('have.length', 2)
     cy.get(CONSTANTS.brandFilterItems).should('be.visible')
   })
 
   it('should filter by brand', () => {
     cy.get(CONSTANTS.brandFilterItems).contains('Mizuno').click()
     cy.url().should('include', 'map=category-1,category-2,brand')
+    cy.get(CONSTANTS.searchResultLoading).should('not.exist')
+    cy.get(CONSTANTS.filtersLoading).should('not.exist')
     cy.get(CONSTANTS.searchResultItem).should('have.length', 1)
     cy.get(CONSTANTS.breadcrumbLink).should('have.length', 4)
     cy.get(CONSTANTS.breadcrumbLink).eq(3).should('have.text', 'Mizuno')
