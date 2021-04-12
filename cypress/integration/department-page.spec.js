@@ -38,5 +38,21 @@ context('Department page', () => ***REMOVED***
     cy.get(CONSTANTS.searchResultItem).should('have.length', 3)
     cy.get(CONSTANTS.breadcrumbLink).should('have.length', 3)
     cy.get(CONSTANTS.breadcrumbLink).eq(2).should('have.text', 'Roupa')
+    cy.get(CONSTANTS.searchTitle).should('have.text', 'Roupa')
+***REMOVED***)
+
+  it('should have three visible brand filters', () => ***REMOVED***
+    cy.get(CONSTANTS.brandFilter).should('exist')
+    cy.get(CONSTANTS.brandFilterItems).should('have.length', 3)
+    cy.get(CONSTANTS.brandFilterItems).should('be.visible')
+***REMOVED***)
+
+  it('should filter by brand', () => ***REMOVED***
+    cy.get(CONSTANTS.brandFilterItems).contains('Mizuno').click()
+    cy.url().should('include', 'map=category-1,category-2,brand')
+    cy.get(CONSTANTS.searchResultItem).should('have.length', 1)
+    cy.get(CONSTANTS.breadcrumbLink).should('have.length', 4)
+    cy.get(CONSTANTS.breadcrumbLink).eq(3).should('have.text', 'Mizuno')
+    cy.get(CONSTANTS.searchTitle).should('have.text', 'Mizuno')
 ***REMOVED***)
 ***REMOVED***)
