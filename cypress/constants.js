@@ -2,11 +2,15 @@ export const searchResultContainer =
   '.vtex-search-result-3-x-searchResultContainer'
 export const breadcrumb = '[data-testid=breadcrumb]'
 export const breadcrumbLink = '.vtex-breadcrumb-1-x-link'
+export const searchTitle = '.vtex-search-result-3-x-galleryTitle--layout'
 export const filtersWrapper = '.vtex-search-result-3-x-filtersWrapper'
 export const categoryFilter =
   '.vtex-search-result-3-x-filter__container--category-2'
 export const categoryFilterItems = `${categoryFilter} > .vtex-search-result-3-x-filterTemplateOverflow >
   div > .vtex-search-result-3-x-filterContent > .vtex-search-result-3-x-filterItem`
+export const brandFilter = '.vtex-search-result-3-x-filter__container--brand'
+export const brandFilterItems = `${brandFilter} > .vtex-search-result-3-x-filterTemplateOverflow >
+div > .vtex-search-result-3-x-filterContent > .vtex-search-result-3-x-filterItem`
 export const searchResultLoading =
   '.vtex-search-result-3-x-searchResultContainer > .relative > .absolute > div > .vtex__icon-spinner'
 export const searchBarContainer =
