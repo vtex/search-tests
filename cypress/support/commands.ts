@@ -1,25 +1,9 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => ***REMOVED*** ... ***REMOVED***)
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", ***REMOVED*** prevSubject: 'element'***REMOVED***, (subject, options) => ***REMOVED*** ... ***REMOVED***)
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", ***REMOVED*** prevSubject: 'optional'***REMOVED***, (subject, options) => ***REMOVED*** ... ***REMOVED***)
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => ***REMOVED*** ... ***REMOVED***)
+Cypress.on('uncaught:exception', (err, _runnable) => ***REMOVED***
+  // we expect a 3rd party library error with message 'Failed to register a ServiceWorker for scope'
+  // and don't want to fail the test so we return false
+  if (err.message.includes('Failed to register a ServiceWorker for scope')) ***REMOVED***
+    return false
+***REMOVED***
+  // we still want to ensure there are no other unexpected
+  // errors, so we let them fail the test
+***REMOVED***)

@@ -8,4 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
+- Initial Cypress setup
+- Tests for Department, Category, Full-text search, and Autocomplete.
+
+### Added
+
 - Initial release.
