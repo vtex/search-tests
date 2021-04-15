@@ -38,3 +38,9 @@ build
 lerna-debug.log
 yarn-error.log
 *.orig
+
+# Cypress
+cypress/videos
+cypress/screenshots
+cypress/results
+resolved-cypress.json

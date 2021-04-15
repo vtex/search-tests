@@ -1,0 +1,11 @@
+***REMOVED***
+  "compilerOptions": ***REMOVED***
+    "strict": true,
+    "baseUrl": "../node_modules",
+    "target": "es6",
+    "lib": ["es6", "dom"],
+    "types": ["cypress"],
+    "module": "es6"
+***REMOVED***
+  "include": ["**/*.ts"]
+***REMOVED***

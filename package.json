@@ -1,21 +1,17 @@
 ***REMOVED***
   "version": "0.0.0",
-  "name": "CHANGE_ME",
+  "name": "search-tests",
   "private": true,
   "license": "UNLICENSED",
   "scripts": ***REMOVED***
     "lint": "eslint --ext js,jsx,ts,tsx .",
     "format": "prettier --write \"**/*.***REMOVED***ts,tsx,js,jsx,json***REMOVED***\"",
-    "lint:locales": "intl-equalizer",
-    "test": "cd ./react && yarn test"
-***REMOVED***
-  "intl-equalizer": ***REMOVED***
-    "referenceLocale": "en",
-    "localeDirectory": "messages"
+    "e2e:open": "./cypress-local.sh open",
+    "e2e:run": "./cypress-local.sh run"
 ***REMOVED***
   "husky": ***REMOVED***
     "hooks": ***REMOVED***
-      "pre-commit": "lint-staged && intl-equalizer && intl-equalizer --fix"
+      "pre-commit": "lint-staged"
   ***REMOVED***
 ***REMOVED***
   "lint-staged": ***REMOVED***
@@ -30,6 +26,7 @@
   "devDependencies": ***REMOVED***
     "@vtex/intl-equalizer": "^2.5.0",
     "@vtex/prettier-config": "^0.3.5",
+    "cypress": "^7.0.1",
     "eslint": "^7.14.0",
     "eslint-config-vtex": "^12.8.11",
     "eslint-config-vtex-react": "^6.8.3",
