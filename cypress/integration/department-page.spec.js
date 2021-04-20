@@ -1,11 +1,9 @@
 // / <reference types='cypress' />
-
 import * as CONSTANTS from '../constants'
 
 context('Department page', () => ***REMOVED***
   before(() => ***REMOVED***
-    cy.setVtexIdCookie()
-    cy.visit('/apparel---accessories')
+    cy.visitPath('/apparel---accessories')
 ***REMOVED***)
 
   it('should render the search-result', () => ***REMOVED***
@@ -45,8 +43,7 @@ context('Department page', () => ***REMOVED***
     cy.get(CONSTANTS.priceFilter).should('exist')
     cy.get(CONSTANTS.minPrice).should('have.text', 'R$ 66,00')
     cy.get(CONSTANTS.maxPrice).should('have.text', '–R$ 121,00')
-    cy.setVtexIdCookie()
-    cy.visit(
+    cy.visitPath(
       '/apparel---accessories/roupa/?map=category-1,category-2&priceRange=66 TO 110'
     )
     cy.get(CONSTANTS.priceFilter).should('exist')
@@ -69,6 +66,6 @@ context('Department page', () => ***REMOVED***
     cy.get(CONSTANTS.searchResultItem).should('have.length', 1)
     cy.get(CONSTANTS.breadcrumbLink).should('have.length', 4)
     cy.get(CONSTANTS.breadcrumbLink).eq(3).should('have.text', 'Mizuno')
-    cy.get(CONSTANTS.searchTitle).should('have.text', 'Mizuno')
+    cy.get(CONSTANTS.searchTitle).should('have.text', 'Roupa')
 ***REMOVED***)
 ***REMOVED***)

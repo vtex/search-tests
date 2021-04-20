@@ -1,11 +1,9 @@
 // / <reference types='cypress' />
-
 import * as CONSTANTS from '../constants'
 
 context('Full text search', () => ***REMOVED***
   before(() => ***REMOVED***
-    cy.setVtexIdCookie()
-    cy.visit('/camisa?map=ft')
+    cy.visitPath('/camisa?map=ft')
 ***REMOVED***)
 
   it('should render the search-result', () => ***REMOVED***

@@ -4,8 +4,7 @@ import * as CONSTANTS from '../constants'
 
 context('Autocomplete', () => ***REMOVED***
   before(() => ***REMOVED***
-    cy.setVtexIdCookie()
-    cy.visit('/')
+    cy.visitPath('/')
 ***REMOVED***)
 
   it('should render the search bar and the autocomplete should be hidden', () => ***REMOVED***
