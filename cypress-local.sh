@@ -1,17 +1,12 @@
 #!/bin/bash
-# grab local token, account and workspace
-token=$(vtex local token)
-account=$(vtex local account)
+# grab local workspace
 workspace=$(vtex local workspace)
 
 resolvedConfig="resolved-cypress.json"
 
-# replace <account> and <workspace> placeholders in baseUrl
+# replace <workspace> placeholder in baseUrl
 # and write config to $resolvedConfig
-cat cypress.json | sed -e "s/<workspace>/$workspace/" | sed -e "s/<account>/$account/" > $resolvedConfig
-
-# expose local token to Cypress tests
-export CYPRESS_authToken=$token
+cat cypress.json | sed -e "s/<workspace>/$workspace/" > $resolvedConfig
 
 # cmd is either 'open' or 'run'
 cmd=$1

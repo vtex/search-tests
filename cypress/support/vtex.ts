@@ -17,4 +17,19 @@ function setVtexIdCookie() {
   )
 }
 
+const WORKSPACE = Cypress.env('VTEX_WORKSPACE')
+
+function getURL(workspace: string, path: string) {
+  const url = new URL(`http://biggy.myvtexprod.com${path}`)
+
+  url.searchParams.set('workspace', workspace)
+
+  return url.toString()
+}
+
+function visit(path: string) {
+  cy.visit(getURL(WORKSPACE, path))
+}
+
 Cypress.Commands.add('setVtexIdCookie', setVtexIdCookie)
+Cypress.Commands.add('visitPath', visit)

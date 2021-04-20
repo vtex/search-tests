@@ -1,5 +1,6 @@
 {
-  "baseUrl": "https://<workspace>--<account>.myvtex.com",
+  "baseUrl": "https://biggy.myvtexprod.com",
+  "testFiles": "**/*.spec.js",
   "specCallback": true,
   "completeCallback": true,
   "viewportWidth": 1920,
@@ -10,5 +11,8 @@
   "retries": {
     "runMode": 2,
     "openMode": 0
+  },
+  "env": {
+    "VTEX_WORKSPACE": "<workspace>"
   }
 }
