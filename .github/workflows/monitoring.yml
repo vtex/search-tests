@@ -1,0 +1,25 @@
+name: Healthcheck
+
+on:
+  schedule:
+    # every 80 minutes
+    - cron: '0 0/4 * * *'
+    - cron: '20 1/4 * * *'
+    - cron: '40 2/4 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Run docker with tests
+        env:
+          HORUS_COGNITO_CREDENTIALS: $***REMOVED******REMOVED*** secrets.HORUS_COGNITO_CREDENTIALS ***REMOVED******REMOVED***
+          HORUS_PROXY_KEY: $***REMOVED******REMOVED*** secrets.HORUS_PROXY_KEY ***REMOVED******REMOVED***
+        run: |
+          yarn test:ci-monitoring
