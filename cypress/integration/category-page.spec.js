@@ -4,8 +4,7 @@ import * as CONSTANTS from '../constants'
 
 context('Category page', () => {
   before(() => {
-    cy.setVtexIdCookie()
-    cy.visit('/apparel---accessories/hats')
+    cy.visitPath('/apparel---accessories/hats')
   })
 
   it('should render the search-result', () => {

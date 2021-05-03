@@ -1,14 +1,20 @@
 {
-  "baseUrl": "https://<workspace>--<account>.myvtex.com",
+  "baseUrl": "https://biggy.myvtexprod.com",
+  "testFiles": "**/*.spec.js",
   "specCallback": true,
   "completeCallback": true,
   "viewportWidth": 1920,
   "viewportHeight": 1080,
   "pluginsFile": "cypress/plugins/index.js",
   "supportFile": "cypress/support/index.ts",
+  "projectId": "qvjzx1",
+  "key": "587fb825-70bc-45dc-9ee0-9ded428ee0e9",
   "defaultCommandTimeout": 6000,
   "retries": {
     "runMode": 2,
     "openMode": 0
+  },
+  "env": {
+    "VTEX_WORKSPACE": "<workspace>"
   }
 }
