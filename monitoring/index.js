@@ -84,7 +84,7 @@ async function sendResults(result, spec) ***REMOVED***
       evidence: ***REMOVED***
         expirationInSeconds: 7 * 24 * 60 * 60, // 7 days
     ***REMOVED***
-      env: 'beta',
+      env: 'stable',
       applicationName: APPLICATION_NAME,
       healthcheck: ***REMOVED***
         moduleName: MODULE_NAME,
