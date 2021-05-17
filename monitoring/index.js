@@ -84,7 +84,7 @@ async function sendResults(result, spec) {
       evidence: {
         expirationInSeconds: 7 * 24 * 60 * 60, // 7 days
       },
-      env: 'beta',
+      env: 'stable',
       applicationName: APPLICATION_NAME,
       healthcheck: {
         moduleName: MODULE_NAME,
