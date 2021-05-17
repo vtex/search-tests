@@ -2,10 +2,8 @@ name: Healthcheck
 
 on:
   schedule:
-    # every 80 minutes
-    - cron: '0 0/4 * * *'
-    - cron: '20 1/4 * * *'
-    - cron: '40 2/4 * * *'
+    # every 5 minutes
+    - cron: '0/5 * * * *'
 
 jobs:
   build:
