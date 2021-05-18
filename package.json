@@ -42,6 +42,8 @@
     "axios": "^0.21.1",
     "bluebird": "^3.7.2",
     "globby": "^11.0.3",
+    "minimist": "^1.2.5",
+    "node-fetch": "^2.6.1",
     "node-window-polyfill": "^1.0.2",
     "pug": "^3.0.2"
 ***REMOVED***
