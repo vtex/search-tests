@@ -13,15 +13,15 @@
 // the project's config changing)
 
 /**
- * @type ***REMOVED***Cypress.PluginConfig***REMOVED***
+ * @type {Cypress.PluginConfig}
  */
-module.exports = (on, _config) => ***REMOVED***
+module.exports = (on, _config) => {
   // eslint-disable-next-line default-param-last
-  on('before:browser:launch', (browser = ***REMOVED******REMOVED***, launchOptions) => ***REMOVED***
-    if (browser.family === 'chromium' && browser.name !== 'electron') ***REMOVED***
+  on('before:browser:launch', (browser = {}, launchOptions) => {
+    if (browser.family === 'chromium' && browser.name !== 'electron') {
       launchOptions.args.push('--disable-dev-shm-usage')
-  ***REMOVED***
+    }
 
     return launchOptions
-***REMOVED***)
-***REMOVED***
+  })
+}

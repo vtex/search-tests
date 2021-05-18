@@ -2,34 +2,34 @@
 
 import * as CONSTANTS from '../constants'
 
-context('Category page', () => ***REMOVED***
-  before(() => ***REMOVED***
+context('Category page', () => {
+  before(() => {
     cy.visitPath('/apparel---accessories/hats')
-***REMOVED***)
+  })
 
-  it('should render the search-result', () => ***REMOVED***
+  it('should render the search-result', () => {
     cy.get(CONSTANTS.searchResultContainer).should('exist')
     cy.get(CONSTANTS.searchResultLoading).should('not.exist')
     cy.get(CONSTANTS.searchResultGallery).should('exist')
-***REMOVED***)
+  })
 
-  it('should display the category on the breadcrumb', () => ***REMOVED***
+  it('should display the category on the breadcrumb', () => {
     cy.get(CONSTANTS.breadcrumb).should('exist')
     cy.get(CONSTANTS.breadcrumbLink).eq(2).should('have.text', 'Hats')
-***REMOVED***)
+  })
 
-  it('should show 2 products', () => ***REMOVED***
+  it('should show 2 products', () => {
     cy.get(CONSTANTS.searchResultItem).should('exist')
     cy.get(CONSTANTS.searchResultItem).should('have.length', 2)
-***REMOVED***)
+  })
 
-  it('should have one visible subcategory filter', () => ***REMOVED***
+  it('should have one visible subcategory filter', () => {
     cy.get(CONSTANTS.subcategoryFilter).should('exist')
     cy.get(CONSTANTS.subcategoryFilterItems).should('have.length', 1)
     cy.get(CONSTANTS.subcategoryFilterItems).should('be.visible')
-***REMOVED***)
+  })
 
-  it('should filter by subcategory', () => ***REMOVED***
+  it('should filter by subcategory', () => {
     cy.get(CONSTANTS.subcategoryFilterItems).contains('Panama').click()
     cy.url().should('include', 'map=category-1,category-2,category-3')
     cy.get(CONSTANTS.searchResultLoading).should('not.exist')
@@ -38,5 +38,5 @@ context('Category page', () => ***REMOVED***
     cy.get(CONSTANTS.breadcrumbLink).should('have.length', 4)
     cy.get(CONSTANTS.breadcrumbLink).eq(3).should('have.text', 'Panama')
     cy.get(CONSTANTS.searchTitle).should('have.text', 'Panama')
-***REMOVED***)
-***REMOVED***)
+  })
+})

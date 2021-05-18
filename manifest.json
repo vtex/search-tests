@@ -1,19 +1,17 @@
-***REMOVED***
+{
   "vendor": "vtex",
   "name": "search-tests",
   "version": "0.2.2",
   "title": "Search Tests",
   "description": "",
-  "builders": ***REMOVED***
+  "builders": {
     "cypress": "0.x",
     "docs": "0.x"
-***REMOVED***
-  "dependencies": ***REMOVED***
+  },
+  "dependencies": {
     "vtex.tester-hub": "0.x"
-***REMOVED***
-  "registries": [
-    "smartcheckout"
-  ],
+  },
+  "registries": ["smartcheckout"],
   "policies": [],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
-***REMOVED***
+}

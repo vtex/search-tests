@@ -7,17 +7,17 @@ export const filtersLoading = '[aria-labelledby="Loading interface..."]'
 export const filtersWrapper = '.vtex-search-result-3-x-filtersWrapper'
 export const categoryFilter =
   '.vtex-search-result-3-x-filter__container--category-2'
-export const categoryFilterItems = `$***REMOVED***categoryFilter***REMOVED*** > .vtex-search-result-3-x-filterTemplateOverflow >
+export const categoryFilterItems = `${categoryFilter} > .vtex-search-result-3-x-filterTemplateOverflow >
   div > .vtex-search-result-3-x-filterContent > .vtex-search-result-3-x-filterItem`
 export const subcategoryFilter =
   '.vtex-search-result-3-x-filter__container--category-3'
-export const subcategoryFilterItems = `$***REMOVED***subcategoryFilter***REMOVED*** > .vtex-search-result-3-x-filterTemplateOverflow >
+export const subcategoryFilterItems = `${subcategoryFilter} > .vtex-search-result-3-x-filterTemplateOverflow >
   div > .vtex-search-result-3-x-filterContent > .vtex-search-result-3-x-filterItem`
 export const priceFilter = '[data-testid=scrollable-element]'
 export const minPrice = '.vtex-slider__left-value'
 export const maxPrice = '.vtex-slider__right-value'
 export const brandFilter = '.vtex-search-result-3-x-filter__container--brand'
-export const brandFilterItems = `$***REMOVED***brandFilter***REMOVED*** > .vtex-search-result-3-x-filterTemplateOverflow >
+export const brandFilterItems = `${brandFilter} > .vtex-search-result-3-x-filterTemplateOverflow >
 div > .vtex-search-result-3-x-filterContent > .vtex-search-result-3-x-filterItem`
 export const searchResultLoading =
   '.vtex-search-result-3-x-searchResultContainer > .relative > .absolute > div > .vtex__icon-spinner'

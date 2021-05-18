@@ -1,31 +1,31 @@
-***REMOVED***
+{
   "version": "0.1.0",
   "name": "search-tests",
   "private": true,
   "license": "UNLICENSED",
-  "scripts": ***REMOVED***
+  "scripts": {
     "lint": "eslint --ext js,jsx,ts,tsx .",
-    "format": "prettier --write \"**/*.***REMOVED***ts,tsx,js,jsx,json***REMOVED***\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\"",
     "test:monitoring": "node ./monitoring/index.js",
     "test:ci-monitoring": "make",
     "e2e:open": "./cypress-local.sh open",
     "e2e:run": "./cypress-local.sh run"
-***REMOVED***
-  "husky": ***REMOVED***
-    "hooks": ***REMOVED***
+  },
+  "husky": {
+    "hooks": {
       "pre-commit": "lint-staged"
-  ***REMOVED***
-***REMOVED***
-  "lint-staged": ***REMOVED***
-    "*.***REMOVED***ts,js,tsx,jsx***REMOVED***": [
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js,tsx,jsx}": [
       "eslint --fix",
       "prettier --write"
     ],
     "*.json": [
       "prettier --write"
     ]
-***REMOVED***
-  "devDependencies": ***REMOVED***
+  },
+  "devDependencies": {
     "@vtex/intl-equalizer": "^2.5.0",
     "@vtex/prettier-config": "^0.3.5",
     "cypress": "^7.0.1",
@@ -36,13 +36,15 @@
     "lint-staged": "^10.5.1",
     "prettier": "^2.2.0",
     "typescript": "^3.9.6"
-***REMOVED***
-  "dependencies": ***REMOVED***
+  },
+  "dependencies": {
     "aws-sdk": "^2.890.0",
     "axios": "^0.21.1",
     "bluebird": "^3.7.2",
     "globby": "^11.0.3",
+    "minimist": "^1.2.5",
+    "node-fetch": "^2.6.1",
     "node-window-polyfill": "^1.0.2",
     "pug": "^3.0.2"
-***REMOVED***
-***REMOVED***
+  }
+}

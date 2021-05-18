@@ -1,8 +1,8 @@
-***REMOVED***
+{
   "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": ***REMOVED***
+  "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-***REMOVED***
+  },
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -12,13 +12,13 @@
   "eslint.alwaysShowStatus": true,
   "eslint.packageManager": "yarn",
   "eslint.workingDirectories": [
-    ***REMOVED***
+    {
       "directory": "react",
       "changeProcessCWD": true
-  ***REMOVED***
-    ***REMOVED***
+    },
+    {
       "directory": "node",
       "changeProcessCWD": true
-  ***REMOVED***
+    }
   ]
-***REMOVED***
+}

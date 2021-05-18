@@ -7,12 +7,12 @@ const fs = require('fs')
 const pug = require('pug')
 const http = require('axios')
 
-const templateUrl = `$***REMOVED***__dirname***REMOVED***/templates/evidence.pug`
+const templateUrl = `${__dirname}/templates/evidence.pug`
 const compile = pug.compileFile(templateUrl)
 
 const pad = (v, len = 2) => v.toString().padStart(len, 0)
 
-function msToTime(s) ***REMOVED***
+function msToTime(s) {
   s = parseInt(s, 10)
   const ms = s % 1000
 
@@ -23,10 +23,10 @@ function msToTime(s) ***REMOVED***
   const mins = s % 60
   const hrs = (s - mins) / 60
 
-  return `$***REMOVED***pad(hrs)***REMOVED***:$***REMOVED***pad(mins)***REMOVED***:$***REMOVED***pad(secs)***REMOVED***.$***REMOVED***pad(ms, 3)***REMOVED***`
-***REMOVED***
+  return `${pad(hrs)}:${pad(mins)}:${pad(secs)}.${pad(ms, 3)}`
+}
 
-function format(date) ***REMOVED***
+function format(date) {
   const d = new Date(date)
   const hour = pad(d.getHours(), 2)
   const minute = pad(d.getMinutes(), 2)
@@ -35,18 +35,18 @@ function format(date) ***REMOVED***
   const month = pad(d.getMonth() + 1, 2)
   const year = pad(d.getFullYear(), 4)
 
-  return `$***REMOVED***hour***REMOVED***:$***REMOVED***minute***REMOVED***:$***REMOVED***second***REMOVED*** $***REMOVED***day***REMOVED***/$***REMOVED***month***REMOVED***/$***REMOVED***year***REMOVED***`
-***REMOVED***
+  return `${hour}:${minute}:${second} ${day}/${month}/${year}`
+}
 
-const main = async (data) => ***REMOVED***
-  if (!data || !data.tests || !data.config) ***REMOVED***
+const main = async (data) => {
+  if (!data || !data.tests || !data.config) {
     return false
-***REMOVED***
+  }
 
   const testsData = data.tests
-  const ***REMOVED*** config ***REMOVED*** = data
+  const { config } = data
 
-  const ***REMOVED*** applicationName ***REMOVED*** = config
+  const { applicationName } = config
   const healthcheckConfig = config.healthcheck
   const evidenceConfig = config.evidence
 
@@ -54,7 +54,7 @@ const main = async (data) => ***REMOVED***
     'https://5gkb7l6p2k.execute-api.us-east-1.amazonaws.com/default/HorusProxy'
 
   // Build message
-  const message = compile(***REMOVED***
+  const message = compile({
     startedTestsAt: format(testsData.startedTestsAt),
     endedTestsAt: format(testsData.endedTestsAt),
     totalDuration: testsData.totalDuration,
@@ -64,48 +64,48 @@ const main = async (data) => ***REMOVED***
     totalPending: testsData.totalPending,
     totalSkipped: testsData.totalSkipped,
     runs: testsData.runs,
-***REMOVED***)
+  })
 
   // Dev
-  if (process.env.DEV || !process.env.HORUS_PROXY_KEY) ***REMOVED***
+  if (process.env.DEV || !process.env.HORUS_PROXY_KEY) {
     fs.writeFileSync('./output.html', message)
-***REMOVED***
+  }
 
   // Send to Healthcheck
-  const healthcheckData = ***REMOVED***
+  const healthcheckData = {
     env: config.env,
-    evidence: ***REMOVED***
+    evidence: {
       applicationName,
       expirationInSeconds: evidenceConfig.expirationInSeconds,
       message,
-  ***REMOVED***
-    healthcheck: ***REMOVED***
+    },
+    healthcheck: {
       Status: healthcheckConfig.status,
       Title: healthcheckConfig.title,
       Etime: msToTime(testsData.totalDuration),
       Module: healthcheckConfig.moduleName,
-  ***REMOVED***
-***REMOVED***
+    },
+  }
 
   if (!process.env.HORUS_PROXY_KEY) return
 
-  try ***REMOVED***
-    const ***REMOVED*** data: hcResponseData, status ***REMOVED*** = await http.post(
+  try {
+    const { data: hcResponseData, status } = await http.post(
       healthcheckUrl,
       healthcheckData,
-      ***REMOVED***
-        headers: ***REMOVED***
+      {
+        headers: {
           'Content-Type': 'application/json',
           'x-api-key': process.env.HORUS_PROXY_KEY,
-      ***REMOVED***
-    ***REMOVED***
+        },
+      }
     )
 
-    console.log(***REMOVED*** hcResponseData, status ***REMOVED***)
-***REMOVED*** catch (error) ***REMOVED***
-    console.log(***REMOVED*** error ***REMOVED***)
+    console.log({ hcResponseData, status })
+  } catch (error) {
+    console.log({ error })
     console.log(error.response)
-***REMOVED***
-***REMOVED***
+  }
+}
 
 module.exports = main

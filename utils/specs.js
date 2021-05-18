@@ -1,9 +1,9 @@
 const globby = require('globby')
 
-function getTestFiles(dir) ***REMOVED***
-  const globPattern = `**/*.spec.***REMOVED***js,ts***REMOVED***`
+function getTestFiles(dir) {
+  const globPattern = `**/*.spec.{js,ts}`
 
-  return globby(globPattern, ***REMOVED*** onlyFiles: true, cwd: dir ***REMOVED***)
-***REMOVED***
+  return globby(globPattern, { onlyFiles: true, cwd: dir })
+}
 
-module.exports = ***REMOVED*** getTestFiles ***REMOVED***
+module.exports = { getTestFiles }

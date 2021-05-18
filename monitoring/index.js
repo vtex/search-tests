@@ -7,7 +7,7 @@ const cypress = require('cypress')
 const uuidv4 = require('uuid/v4')
 const Promise = require('bluebird')
 
-const ***REMOVED*** getTestFiles ***REMOVED*** = require('../utils/specs')
+const { getTestFiles } = require('../utils/specs')
 const monitoring = require('./monitoring')
 const s3 = require('./s3')
 
@@ -17,116 +17,116 @@ const CONCURRENCY = 1
 const APPLICATION_NAME = 'search'
 const MODULE_NAME = 'Search App'
 
-const CYPRESS_CONFIG = ***REMOVED***
+const CYPRESS_CONFIG = {
   headed: true,
   headless: false,
-  config: ***REMOVED***
+  config: {
     viewportWidth: 1920,
     viewportHeight: 1080,
     trashAssetsBeforeRuns: false,
     videoUploadOnPasses: false,
-    env: ***REMOVED***
+    env: {
       VTEX_WORKSPACE: process.env.VTEX_WORKSPACE || 'master',
-  ***REMOVED***
+    },
     video: true,
-***REMOVED***
+  },
   projectId: 'qvjzx1',
-  reporterOptions: ***REMOVED***
+  reporterOptions: {
     reportDir: 'cypress/results',
     overwrite: false,
     html: false,
     json: true,
-***REMOVED***
-***REMOVED***
+  },
+}
 
-async function sendResults(result, spec) ***REMOVED***
-  if (!result || result.message === 'Could not find Cypress test run results') ***REMOVED***
+async function sendResults(result, spec) {
+  if (!result || result.message === 'Could not find Cypress test run results') {
     console.error('Could not find Cypress test run results')
 
     return
-***REMOVED***
+  }
 
   const runId = uuidv4()
 
   result.runs = await Promise.all(
-    result.runs.map(async (run) => ***REMOVED***
-      try ***REMOVED***
-        if (run.stats.failures === 0) ***REMOVED***
-          try ***REMOVED***
-            await fs.unlink(`cypress/videos/$***REMOVED***run.spec.name***REMOVED***.mp4`)
-        ***REMOVED*** catch ***REMOVED***
+    result.runs.map(async (run) => {
+      try {
+        if (run.stats.failures === 0) {
+          try {
+            await fs.unlink(`cypress/videos/${run.spec.name}.mp4`)
+          } catch {
             // ignored
-        ***REMOVED***
+          }
 
           return run
-      ***REMOVED***
+        }
 
-        console.log(`Uploading video for $***REMOVED***run.spec.name***REMOVED***`)
+        console.log(`Uploading video for ${run.spec.name}`)
 
-        const ***REMOVED*** url: videoUrl ***REMOVED*** = await s3.uploadFile(
+        const { url: videoUrl } = await s3.uploadFile(
           run.video,
-          `$***REMOVED***runId***REMOVED***/$***REMOVED***run.spec.name***REMOVED***.mp4`,
+          `${runId}/${run.spec.name}.mp4`,
           'video/mp4'
         )
 
-        return ***REMOVED*** ...run, video: videoUrl ***REMOVED***
-    ***REMOVED*** catch (err) ***REMOVED***
+        return { ...run, video: videoUrl }
+      } catch (err) {
         console.error(err)
 
         return run
-    ***REMOVED***
-  ***REMOVED***)
+      }
+    })
   )
 
-  console.log(`Sending result to monitoring for "$***REMOVED***spec***REMOVED***"`)
-  await monitoring(***REMOVED***
-    config: ***REMOVED***
-      evidence: ***REMOVED***
+  console.log(`Sending result to monitoring for "${spec}"`)
+  await monitoring({
+    config: {
+      evidence: {
         expirationInSeconds: 7 * 24 * 60 * 60, // 7 days
-    ***REMOVED***
+      },
       env: 'stable',
       applicationName: APPLICATION_NAME,
-      healthcheck: ***REMOVED***
+      healthcheck: {
         moduleName: MODULE_NAME,
         status: result.totalFailed > 0 ? 0 : 1,
         title: spec,
-    ***REMOVED***
-  ***REMOVED***
+      },
+    },
     tests: result,
-***REMOVED***)
-***REMOVED***
+  })
+}
 
-function runCypress(spec) ***REMOVED***
+function runCypress(spec) {
   return cypress
-    .run(***REMOVED***
-      spec: `./cypress/integration/$***REMOVED***spec***REMOVED***`,
+    .run({
+      spec: `./cypress/integration/${spec}`,
       ...CYPRESS_CONFIG,
-  ***REMOVED***)
+    })
     .then((result) => sendResults(result, spec))
-    .catch((error) => ***REMOVED***
+    .catch((error) => {
       console.log(error)
 
       return Promise.resolve()
-  ***REMOVED***)
-***REMOVED***
+    })
+}
 
-const run = async () => ***REMOVED***
+const run = async () => {
   const specs = await getTestFiles(BASE_PATH)
 
-  if (!specs.length) ***REMOVED***
+  if (!specs.length) {
     console.log('No spec files were found...')
-***REMOVED***
+  }
 
-  console.log(`Found $***REMOVED***specs.length***REMOVED*** test(s)`)
+  console.log(`Found ${specs.length} test(s)`)
 
-  try ***REMOVED***
+  try {
     console.log('Starting tests...')
-    Promise.map(specs, runCypress, ***REMOVED*** concurrency: CONCURRENCY ***REMOVED***)
+    Promise.map(specs, runCypress, { concurrency: CONCURRENCY })
 
     return
-***REMOVED*** catch (e) ***REMOVED***
+  } catch (e) {
     console.log(e)
-***REMOVED***
-***REMOVED***
+  }
+}
 
 run()

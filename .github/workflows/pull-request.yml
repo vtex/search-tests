@@ -17,7 +17,7 @@ jobs:
       - name: Danger CI
         uses: vtex/danger@master
         env:
-          GITHUB_TOKEN: '$***REMOVED******REMOVED*** secrets.GITHUB_TOKEN ***REMOVED******REMOVED***'
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           REQUIRE_CHANGELOG_VERSION: false
   io-app-test:
     name: IO app test
@@ -35,10 +35,10 @@ jobs:
       - uses: actions/cache@v1
         id: yarn-cache
         with:
-          path: '$***REMOVED******REMOVED*** steps.yarn-cache-dir-path.outputs.dir ***REMOVED******REMOVED***'
-          key: "$***REMOVED******REMOVED*** runner.os ***REMOVED******REMOVED***-yarn-$***REMOVED******REMOVED*** hashFiles('**/yarn.lock') ***REMOVED******REMOVED***"
+          path: '${{ steps.yarn-cache-dir-path.outputs.dir }}'
+          key: "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
           restore-keys: |
-            $***REMOVED******REMOVED*** runner.os ***REMOVED******REMOVED***-yarn-
+            ${{ runner.os }}-yarn-
       - name: Run test on every builder directory
         uses: vtex/action-io-app-test@master
   lint:
@@ -57,9 +57,9 @@ jobs:
       - uses: actions/cache@v1
         id: yarn-cache
         with:
-          path: '$***REMOVED******REMOVED*** steps.yarn-cache-dir-path.outputs.dir ***REMOVED******REMOVED***'
-          key: "$***REMOVED******REMOVED*** runner.os ***REMOVED******REMOVED***-yarn-$***REMOVED******REMOVED*** hashFiles('**/yarn.lock') ***REMOVED******REMOVED***"
+          path: '${{ steps.yarn-cache-dir-path.outputs.dir }}'
+          key: "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
           restore-keys: |
-            $***REMOVED******REMOVED*** runner.os ***REMOVED******REMOVED***-yarn-
+            ${{ runner.os }}-yarn-
       - name: Lint project
         uses: vtex/action-lint@master
