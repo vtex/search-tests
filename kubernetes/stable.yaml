@@ -6,6 +6,7 @@ kubernetes:
   apps:
     - name: search-tests
       dockerfile: Dockerfile
+      imageRepoName: vtex/search-tests
       secretsManager:
         enabled: false
       kind: cronjob
