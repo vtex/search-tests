@@ -1,0 +1,18 @@
+kubernetes:
+  base:
+    repoName: search-tests
+    imageRepository: 053131491888.dkr.ecr.us-east-1.amazonaws.com
+    environment: stable
+  apps:
+    - name: search-tests
+      secretsManager:
+        enabled: false
+      kind: cronjob
+      schedule: "* * * * *"
+      resources:
+        limits:
+          cpu: 200m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
