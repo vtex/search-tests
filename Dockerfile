@@ -13,3 +13,5 @@ COPY ./ ./
 RUN \
   yarn install && \
   yarn cypress verify
+  
+ENTRYPOINT yarn test:monitoring
