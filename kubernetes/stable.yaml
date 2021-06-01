@@ -5,6 +5,7 @@ kubernetes:
     environment: stable
   apps:
     - name: search-tests
+      dockerfile: Dockerfile
       secretsManager:
         enabled: false
       kind: cronjob
