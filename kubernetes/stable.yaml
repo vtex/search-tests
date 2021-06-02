@@ -8,7 +8,7 @@ kubernetes:
       dockerfile: Dockerfile
       imageRepoName: vtex/search-tests
       secretsManager:
-        enabled: false
+        enabled: true
       kind: cronjob
       schedule: "* * * * *"
       resources:
