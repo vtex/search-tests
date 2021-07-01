@@ -10,7 +10,7 @@ kubernetes:
       secretsManager:
         enabled: true
       kind: cronjob
-      schedule: "*/10 * * * *"
+      schedule: '*/6 * * * *'
       resources:
         limits:
           cpu: 800m
