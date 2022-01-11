@@ -49,7 +49,7 @@ const getAuthToken = ({ appkey, apptoken }) => {
   const sessionDirectory = path.join(homedir, '.vtex', 'session')
 
   if (!fs.existsSync(sessionDirectory)) {
-    fs.mkdirSync(sessionDirectory)
+    fs.mkdirSync(sessionDirectory, { recursive: true })
   }
 
   fs.writeFileSync(
