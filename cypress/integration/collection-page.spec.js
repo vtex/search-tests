@@ -7,9 +7,8 @@ context('Collection page', () => {
     cy.visitPath('/anime?map=productClusterNames')
   })
 
-  it('should render the search-result', () => {
+  it('should render the search result', () => {
     cy.get(CONSTANTS.searchResultContainer).should('exist')
-    cy.get(CONSTANTS.searchResultLoading).should('not.exist')
     cy.get(CONSTANTS.searchResultGallery).should('exist')
   })
 
@@ -17,7 +16,7 @@ context('Collection page', () => {
     cy.get(CONSTANTS.searchTitle).should('have.text', 'Anime')
   })
 
-  it('should display the collection name on the breadcrumb', () => {
+  it('should display the collection name on breadcrumb', () => {
     cy.get(CONSTANTS.breadcrumb).should('exist')
     cy.get(CONSTANTS.breadcrumbLink).eq(1).should('have.text', 'Anime')
   })
