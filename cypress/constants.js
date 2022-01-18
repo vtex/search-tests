@@ -27,3 +27,7 @@ export const searchResultGallery = '.vtex-search-result-3-x-gallery'
 export const searchResultItem = '.vtex-search-result-3-x-galleryItem'
 export const autocomplete = '.vtex-search-2-x-biggy-autocomplete'
 export const hiddenAutocomplete = '.vtex-search-2-x-biggy-js-container--hidden'
+export const topSearches = '.vtex-search-2-x-itemList--top-search'
+export const searchSuggestions = `${autocomplete} > .vtex-search-2-x-itemList--suggestion`
+export const productSuggestions = `${autocomplete} > .vtex-search-2-x-tileList > .vtex-search-2-x-tileListList > li`
+export const seeAllProducts = `.vtex-search-2-x-tileListSeeMore`
