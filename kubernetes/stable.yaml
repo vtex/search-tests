@@ -7,6 +7,11 @@ kubernetes:
     - name: search-tests
       dockerfile: Dockerfile
       imageRepoName: vtex/search-tests
+      affinity:
+        type: required
+        conditions:
+          - key: eks.amazonaws.com/nodegroup
+            value: EKS-Robots-Spot-Workers
       secretsManager:
         enabled: true
       kind: cronjob
