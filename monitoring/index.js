@@ -8,14 +8,14 @@ const uuidv4 = require('uuid/v4')
 const Promise = require('bluebird')
 
 const { getTestFiles } = require('../utils/specs')
-const monitoring = require('./monitoring')
+// const monitoring = require('./monitoring')
 const s3 = require('./s3')
 
 const BASE_PATH = path.resolve(__dirname, '..', 'cypress', 'integration')
 const CONCURRENCY = 1
 
-const APPLICATION_NAME = 'search'
-const MODULE_NAME = 'Search App'
+// const APPLICATION_NAME = 'search'
+// const MODULE_NAME = 'Search App'
 
 const CYPRESS_CONFIG = {
   headed: true,
@@ -79,21 +79,21 @@ async function sendResults(result, spec) {
   )
 
   console.log(`Sending result to monitoring for "${spec}"`)
-  await monitoring({
-    config: {
-      evidence: {
-        expirationInSeconds: 7 * 24 * 60 * 60, // 7 days
-      },
-      env: 'stable',
-      applicationName: APPLICATION_NAME,
-      healthcheck: {
-        moduleName: MODULE_NAME,
-        status: result.totalFailed > 0 ? 0 : 1,
-        title: spec,
-      },
-    },
-    tests: result,
-  })
+  // await monitoring({
+  //   config: {
+  //     evidence: {
+  //       expirationInSeconds: 7 * 24 * 60 * 60, // 7 days
+  //     },
+  //     env: 'stable',
+  //     applicationName: APPLICATION_NAME,
+  //     healthcheck: {
+  //       moduleName: MODULE_NAME,
+  //       status: result.totalFailed > 0 ? 0 : 1,
+  //       title: spec,
+  //     },
+  //   },
+  //   tests: result,
+  // })
 }
 
 function runCypress(spec) {
