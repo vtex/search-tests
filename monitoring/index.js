@@ -14,7 +14,7 @@ const s3 = require('./s3')
 const BASE_PATH = path.resolve(__dirname, '..', 'cypress', 'integration')
 const CONCURRENCY = 1
 
-// const APPLICATION_NAME = 'search'
+// const APPLICATION_NAME = 'search'a
 // const MODULE_NAME = 'Search App'
 
 const CYPRESS_CONFIG = {
