@@ -3,6 +3,8 @@ export const searchResultContainer =
 export const breadcrumb = '[data-testid=breadcrumb]'
 export const breadcrumbLink = '.vtex-breadcrumb-1-x-link'
 export const searchTitle = '.vtex-search-result-3-x-galleryTitle--layout'
+export const totalProducts =
+  '.vtex-search-result-3-x-totalProducts--layout > span'
 export const filtersLoading = '[aria-labelledby="Loading interface..."]'
 export const filtersWrapper = '.vtex-search-result-3-x-filtersWrapper'
 export const categoryFilter =

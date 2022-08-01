@@ -19,6 +19,10 @@ context('Department page', () => {
       .should('have.text', 'Apparel & Accessories')
   })
 
+  it('should have a total of 14 products', () => {
+    cy.get(CONSTANTS.totalProducts).should('contain.text', '14')
+  })
+
   it('should show 10 products', () => {
     cy.get(CONSTANTS.searchResultItem).should('exist')
     cy.get(CONSTANTS.searchResultItem).should('have.length', 10)

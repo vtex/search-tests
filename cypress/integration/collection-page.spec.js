@@ -30,12 +30,13 @@ context('Collection page', () => {
     cy.get(CONSTANTS.filtersWrapper).should('exist')
   })
 
-  it('should filter by department', () => {
+  it('should filter by brand', () => {
     cy.get(CONSTANTS.brandFilter).should('exist')
     cy.get(CONSTANTS.brandFilterItems).should('have.length', 4)
     cy.get(CONSTANTS.brandFilterItems).contains('Sony').click()
     cy.url().should('include', 'map=brand,productClusterNames')
     cy.get(CONSTANTS.searchResultLoading).should('not.exist')
+    cy.get(CONSTANTS.breadcrumbLink).should('have.length', 3)
     cy.get(CONSTANTS.searchResultItem).should('have.length', 1)
     cy.get(CONSTANTS.filtersLoading).should('not.exist')
   })

@@ -2,6 +2,7 @@
 declare namespace Cypress {
   interface Chainable<Subject> {
     setVtexIdCookie: typeof setVtexIdCookie
+    visitPath: typeof visitPath
   }
 }
 
@@ -27,9 +28,9 @@ function getURL(workspace: string, path: string) {
   return url.toString()
 }
 
-function visit(path: string) {
+function visitPath(path: string) {
   cy.visit(getURL(WORKSPACE, path))
 }
 
 Cypress.Commands.add('setVtexIdCookie', setVtexIdCookie)
-Cypress.Commands.add('visitPath', visit)
+Cypress.Commands.add('visitPath', visitPath)
