@@ -1,0 +1,17 @@
+- acronym: search-tests
+  build:
+    pipelines:
+    - name: drone-builder-v1
+      parameters:
+        awsAccountId: "053131491888"
+        awsRegion: us-east-1
+        environment: stable
+      runtime:
+        architecture: amd64
+      when:
+      - event: push
+        regex: main
+        source: branch
+    provider: dkcicd
+  description: Deploy with drone-builder
+  name: search-tests
