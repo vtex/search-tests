@@ -1,0 +1,19 @@
+base:
+  environment: stable
+  imageRepository: 053131491888.dkr.ecr.us-east-1.amazonaws.com
+  repoName: search-tests
+apps:
+- dockerfile: Dockerfile
+  imageRepoName: vtex/search-tests
+  kind: cronjob
+  name: search-tests
+  resources:
+    limits:
+      cpu: 800m
+      memory: 1500Mi
+    requests:
+      cpu: 400m
+      memory: 1000Mi
+  schedule: '*/6 * * * *'
+  secretsManager:
+    enabled: true
