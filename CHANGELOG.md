@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Daily Cypress GitHub Action that notifies Slack on failure.
+- Cypress GitHub Action on a daily schedule, pull requests, and pushes to `main`, with Slack alerts on failure (except PRs).
 
 ### Changed
 
