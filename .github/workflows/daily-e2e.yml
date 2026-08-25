@@ -14,12 +14,23 @@ on:
 jobs:
   e2e:
     name: Run Cypress
-    runs-on: self-hosted
+    runs-on: [self-hosted, ubuntu-20.04]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 14
+
+      # Self-hosted runners do not ship the tooling baked into GitHub-hosted images.
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install Cypress dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+
       - run: yarn install --frozen-lockfile
       - run: yarn cypress run --env VTEX_WORKSPACE=master
 
@@ -27,7 +38,7 @@ jobs:
     name: Slack failure notification
     needs: e2e
     if: failure() && github.event_name != 'pull_request'
-    runs-on: self-hosted
+    runs-on: [self-hosted, ubuntu-20.04]
     steps:
       - uses: slackapi/slack-github-action@v2
         with:
