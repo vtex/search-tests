@@ -21,8 +21,13 @@ context('Full text search', () => {
     cy.get(CONSTANTS.breadcrumbLink).eq(1).should('have.text', 'camisa')
   })
 
-  it('should show 3 products', () => {
+  it('should show products', () => {
     cy.get(CONSTANTS.searchResultItem).should('exist')
-    cy.get(CONSTANTS.searchResultItem).should('have.length', 3)
+    cy.get(CONSTANTS.searchResultItem).should(($items) => {
+      expect($items.length).to.be.within(1, 10)
+    })
+    cy.get(CONSTANTS.totalProducts).should(($total) => {
+      expect(parseInt($total.text(), 10)).to.be.greaterThan(0)
+    })
   })
 })

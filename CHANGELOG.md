@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Cypress GitHub Action on a daily schedule, pull requests, and pushes to `main`, with Slack alerts on failure (except PRs).
+
+### Changed
+
+- Cypress specs and selectors to match the current biggy storefront.
+
+### Fixed
+
+- Cypress aborting every spec on a storefront recsys SyntaxError.
+- `visitPath` using HTTP against an HTTPS base URL.
+- PR workflows using retired `actions/cache` v1.
+
 ## [0.3.0] - 2022-01-18
 
 ### Added
