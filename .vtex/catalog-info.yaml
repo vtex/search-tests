@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: search-tests
+  annotations:
+    github.com/project-slug: vtex/search-tests
+    vtex.com/application-id: M9AG0Y5Z
+spec:
+  type: other
+  lifecycle: unknown
+  owner: te-0016
