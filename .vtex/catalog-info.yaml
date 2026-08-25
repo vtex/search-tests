@@ -4,6 +4,7 @@ metadata:
   name: search-tests
   annotations:
     github.com/project-slug: vtex/search-tests
+    vtex.com/application-id: M9AG0Y5Z
 spec:
   type: other
   lifecycle: unknown
