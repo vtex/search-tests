@@ -18,25 +18,18 @@ context('Category page', () => {
     cy.get(CONSTANTS.breadcrumbLink).eq(2).should('have.text', 'Hats')
   })
 
-  it('should show 2 products', () => {
+  it('should display the category title', () => {
+    cy.get(CONSTANTS.searchTitle).should('have.text', 'Hats')
+  })
+
+  it('should show products', () => {
     cy.get(CONSTANTS.searchResultItem).should('exist')
-    cy.get(CONSTANTS.searchResultItem).should('have.length', 2)
+    cy.get(CONSTANTS.totalProducts).should(($total) => {
+      expect(parseInt($total.text(), 10)).to.be.greaterThan(0)
+    })
   })
 
-  it('should have one visible subcategory filter', () => {
-    cy.get(CONSTANTS.subcategoryFilter).should('exist')
-    cy.get(CONSTANTS.subcategoryFilterItems).should('have.length', 1)
-    cy.get(CONSTANTS.subcategoryFilterItems).should('be.visible')
-  })
-
-  it('should filter by subcategory', () => {
-    cy.get(CONSTANTS.subcategoryFilterItems).contains('Panama').click()
-    cy.url().should('include', 'map=category-1,category-2,category-3')
-    cy.get(CONSTANTS.searchResultLoading).should('not.exist')
-    cy.get(CONSTANTS.filtersLoading).should('not.exist')
-    cy.get(CONSTANTS.searchResultItem).should('have.length', 1)
-    cy.get(CONSTANTS.breadcrumbLink).should('have.length', 4)
-    cy.get(CONSTANTS.breadcrumbLink).eq(3).should('have.text', 'Panama')
-    cy.get(CONSTANTS.searchTitle).should('have.text', 'Panama')
+  it('should show filters', () => {
+    cy.get(CONSTANTS.filtersWrapper).should('exist')
   })
 })

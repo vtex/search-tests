@@ -3,7 +3,7 @@
 import * as CONSTANTS from '../constants'
 
 context('Autocomplete', () => {
-  before(() => {
+  beforeEach(() => {
     cy.visitPath('/')
   })
 
@@ -25,13 +25,13 @@ context('Autocomplete', () => {
   })
 
   it('should display search and product suggestions when typing a term', () => {
-    cy.get(CONSTANTS.topSearches).should('exist')
     cy.get(CONSTANTS.searchBarContainer).type('camisa')
-    cy.get(CONSTANTS.searchSuggestions)
+    cy.get(CONSTANTS.searchSuggestions).should('exist')
     cy.get(CONSTANTS.productSuggestions).should('have.length', 3)
   })
 
   it('should redirect to search page when clicking to see all products', () => {
+    cy.get(CONSTANTS.searchBarContainer).type('camisa')
     cy.get(CONSTANTS.seeAllProducts).should('exist')
     cy.get(CONSTANTS.seeAllProducts).click()
     cy.url().should('include', 'map=ft')

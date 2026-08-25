@@ -1,0 +1,35 @@
+name: Daily Cypress E2E
+
+on:
+  schedule:
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+
+jobs:
+  e2e:
+    name: Run Cypress
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 14
+      - run: yarn install --frozen-lockfile
+      - run: yarn cypress run --env VTEX_WORKSPACE=master
+
+  slack-fail:
+    name: Slack failure notification
+    needs: e2e
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: slackapi/slack-github-action@v2
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK }}
+          webhook-type: webhook-trigger
+          payload: |
+            {
+              "status": ":x: FAILED",
+              "text": "Daily Cypress E2E failed on vtex/search-tests (workspace=master).",
+              "run_url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            }
