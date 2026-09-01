@@ -1,17 +1,34 @@
-- acronym: search-tests
+- name: dk-search-tests
+  description: Deployment of search-tests application using DK IaC and DK CICD
   build:
+    provider: dkcicd
     pipelines:
-    - name: drone-builder-v1
+    - name: application-build-v1
       parameters:
-        awsAccountId: "053131491888"
-        awsRegion: us-east-1
-        environment: stable
-      runtime:
-        architecture: amd64
+        acronym: search-tests
+        applicationName: search-tests
+        applicationType: k8s
+        baseBranch: setup/dk-kubernetes
+        chartName: sre-provisioning
+        dockerfilePath: Dockerfile
+        environmentType: stable
+        imageRepo: vtex/search-tests
+        imageTag: '{{ ref_name }}'
+        rollout: "true"
       when:
       - event: push
-        regex: main
+        source: tag
+        regex: ^((?!beta).)*$
+      runtime:
+        architecture: amd64
+    - name: application-deploy-v2
+      parameters:
+        acronym: search-tests
+        baseBranch: setup/dk-kubernetes
+        projectName: sre-apps
+      when:
+      - event: push
         source: branch
-    provider: dkcicd
-  description: Deploy with drone-builder
-  name: search-tests
+        regex: setup/dk-kubernetes
+      runtime:
+        architecture: amd64
